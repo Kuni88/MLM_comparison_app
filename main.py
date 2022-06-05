@@ -3,6 +3,14 @@ import plotly.graph_objects as go
 from transformers import pipeline
 from huggingface_hub import HfApi, ModelFilter
 
+## Config
+st.set_page_config(
+    page_title="MLM Comparison app",
+    page_icon="🚀",
+)
+st.header("MLM comparison")
+
+
 def run_and_visualize(model, text, topk):
     pipe = pipeline('fill-mask', model=model)
     text = text.replace('[MASK]', pipe.tokenizer.mask_token)
