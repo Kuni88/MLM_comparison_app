@@ -1,4 +1,4 @@
 torch
-transformers
+transformers[ja]
 huggingface_hub
 plotly
