@@ -15,7 +15,6 @@ st.set_page_config(
 )
 st.header("MLM comparison")
 
-@st.cache()
 def run_and_visualize(model, text, topk):
     pipe = pipeline('fill-mask', model=model)
     text = text.replace('[MASK]', pipe.tokenizer.mask_token)
