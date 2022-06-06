@@ -27,13 +27,21 @@ TEMPLATES = {
     'en': 'Paris is the [MASK] of France.',
     'ja': '大学で[MASK]の研究をしています。',
 }
+DEFAULT_MODELS = {
+    'en': ['bert-base-uncased', 'distilbert-base-uncased'],
+    'ja': [
+        'cl-tohoku/bert-base-japanese-v2', 
+        'izumi-lab/electra-base-japanese-generator'
+    ]
+}
 
 lang = st.selectbox("Select a language", list(TEMPLATES.keys()))
 filter = ModelFilter(language=lang, task='fill-mask')
 api = HfApi()
 hf_models = [model.id for model in api.list_models(filter=filter)]
 
-models = st.multiselect("Choose two models", options=hf_models, default=hf_models[0:2])
+
+models = st.multiselect("Choose two models", options=hf_models, default=DEFAULT_MODELS[lang])
 text = st.text_input("Input texts (Mask token: [MASK])", TEMPLATES[lang])
 topk = st.number_input("Topk", min_value=1, max_value=10, value=5, step=1)
 
