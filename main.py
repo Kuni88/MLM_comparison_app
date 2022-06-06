@@ -62,4 +62,4 @@ if st.button("Run"):
 
     
     dsk = psutil.disk_usage('/')
-    st.write(f"total: {dsk.total}, used: {dsk.usage}, free: {dsk.free}")
+    st.write(f"total: {dsk.total / 1024 / 1024 / 1024:.2f}, used: {dsk.used / 1024 / 1024 //1024:.2f}, free: {dsk.free / 1024 / 1024 /1024:.2f}")
