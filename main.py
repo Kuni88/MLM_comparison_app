@@ -1,7 +1,13 @@
 import streamlit as st
 import plotly.graph_objects as go
+import os
+import shutil
 from transformers import pipeline
 from huggingface_hub import HfApi, ModelFilter
+
+CACHE_PATH = '/transformers/cache/'
+os.environ['TRANSFORMERS_CACHE'] = CACHE_PATH
+
 
 ## Config
 st.set_page_config(
@@ -10,7 +16,7 @@ st.set_page_config(
 )
 st.header("MLM comparison")
 
-
+@st.cache()
 def run_and_visualize(model, text, topk):
     pipe = pipeline('fill-mask', model=model)
     text = text.replace('[MASK]', pipe.tokenizer.mask_token)
@@ -54,3 +60,6 @@ if st.button("Run"):
         with st.container():
             fig2 = run_and_visualize(models[1], text, topk)
             st.plotly_chart(fig2, use_container_width=True)
+
+    stat = shutil.disk_usage(CACHE_PATH)
+    st.write(stat)
