@@ -61,5 +61,5 @@ if st.button("Run"):
             fig2 = run_and_visualize(models[1], text, topk)
             st.plotly_chart(fig2, use_container_width=True)
 
-    stat = shutil.disk_usage(CACHE_PATH)
+    stat = shutil.disk_usage("/")
     st.write(stat)
