@@ -3,4 +3,4 @@ transformers[ja]
 huggingface_hub
 plotly
 sentencepiece
-
+psutil
