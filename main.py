@@ -6,10 +6,9 @@ from huggingface_hub import HfApi, ModelFilter
 ## Config
 st.set_page_config(
     page_title="MLM Comparison app",
-    page_icon="🚀",
+    page_icon="📊",
 )
-st.header("MLM comparison")
-
+st.header("📊 MLM comparison")
 
 def run_and_visualize(model, text, topk):
     pipe = pipeline('fill-mask', model=model)
